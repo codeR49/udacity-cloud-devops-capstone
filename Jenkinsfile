@@ -22,14 +22,14 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {
-                  sh 'docker build -t udacity-cloud-devops-capstone .'
+                  sh 'docker build -t udacity-capstone-app .'
               }
          }
          stage('Push Docker Image') {
               steps {
                   withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
-                      sh "docker tag udacity-cloud-devops-capstone mydocker49/udacity-cloud-devops-capstone"
-                      sh 'docker push mydocker49/udacity-cloud-devops-capstone'
+                      sh "docker tag udacity-capstone-app:latest"
+                      sh 'docker push mydocker49/udacity-capstone-app'
                   }
               }
          }
