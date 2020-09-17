@@ -18,7 +18,7 @@ pipeline {
          }
          stage('Push Docker Image') {
               steps {
-                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
+                  withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag udacity-cloud-devops-capstone mydocker49/udacity-cloud-devops-capstone"
                       sh 'docker push mydocker49/udacity-cloud-devops-capstone'
                   }
@@ -39,11 +39,6 @@ pipeline {
                   }
               }
         }
-        stage("Cleaning up") {
-              steps{
-                    echo 'Cleaning up...'
-                    sh "docker system prune"
-              }
-        }
+        
      }
 }
