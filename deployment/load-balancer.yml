@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udacity-cloud-devops-capstone
+  labels:
+    app: udacity-cloud-devops-capstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: udacity-cloud-devops-capstone
+  ports:
+    - port: 80
+      targetPort: 80
