@@ -30,12 +30,13 @@ pipeline {
                   withAWS(credentials: 'aws', region: 'ap-south-1') {
                       sh "aws eks --region ap-south-1 update-kubeconfig --name mycapstone"
                       sh "kubectl config use-context arn:aws:eks:ap-south-1:527375347403:cluster/mycapstone"
-                      sh "kubectl set image deployments/udacity-cloud-devops-capstone udacity-cloud-devops-capstone=mydocker49/udacity-cloud-devops-capstone:latest"
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl get nodes"
                       sh "kubectl get deployment"
                       sh "kubectl get pod -o wide"
                       sh "kubectl get service/udacity-cloud-devops-capstone"
+                      sh "kubectl set image deployments/udacity-cloud-devops-capstone udacity-cloud-devops-capstone=mydocker49/udacity-cloud-devops-capstone:latest"
+
                   }
               }
         }
