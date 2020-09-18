@@ -11,6 +11,15 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
+         stage('Create kube config file') {
+              steps { 
+                  withAWS(region: 'ap-south-1', credentials: 'aws'){
+                      sh '''
+                                  aws eks --region ap-south-1 update-kubeconfig --name mycapstone
+                        '''
+                  }
+              }
+         }
          stage('Build Docker Image') {
               steps {
                   sh 'docker build -t udacity-capstone-app .'
